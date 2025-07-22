@@ -1,0 +1,1768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read Every Day Quran Challenge - Red Award</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #2D5A27;
+            --accent-gold: #D4AF37;
+            --light-green: #E8F5E8;
+            --text-dark: #2c3e50;
+            --text-light: #7f8c8d;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--light-green) 0%, #f8fffe 100%);
+            color: var(--text-dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px 16px;
+            min-height: 100vh;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 24px 0;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 12px 8px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        .nav-tab.active {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .nav-tab:hover:not(.active) {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(45, 90, 39, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .form-input, .form-select, .form-textarea {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+            background: var(--white);
+            transition: var(--transition);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+        }
+
+        .form-select {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 12px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+            padding-right: 48px;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .form-help {
+            display: block;
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 6px;
+            font-style: italic;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .checkbox-item {
+            position: relative;
+        }
+
+        .checkbox-input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            min-height: 56px;
+        }
+
+        .checkbox-input:checked + .checkbox-label {
+            background: var(--light-green);
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .checkbox-icon {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dee2e6;
+            border-radius: 4px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            flex-shrink: 0;
+        }
+
+        .checkbox-input:checked + .checkbox-label .checkbox-icon {
+            background: var(--primary-green);
+            border-color: var(--primary-green);
+            color: white;
+        }
+
+        .verification-checkbox {
+            background: #fff8e1;
+            border: 2px solid var(--accent-gold);
+            padding: 16px;
+            border-radius: 10px;
+            margin-top: 12px;
+        }
+
+        .verification-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .verification-input {
+            margin-right: 12px;
+            margin-top: 2px;
+            transform: scale(1.2);
+            accent-color: var(--accent-gold);
+        }
+
+        .bulk-toggle {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-bottom: 16px;
+        }
+
+        .bulk-toggle:hover {
+            background: #1e3d1a;
+            transform: translateY(-1px);
+        }
+
+        .bulk-section {
+            display: none;
+            background: #f8f9fa;
+            border: 2px dashed var(--primary-green);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+
+        .bulk-section.active {
+            display: block;
+        }
+
+        .bulk-info {
+            background: var(--light-green);
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: var(--primary-green);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--primary-green) 0%, #1e3d1a 100%);
+            color: white;
+            border: none;
+            padding: 18px 24px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .leaderboard {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+            margin-top: 32px;
+        }
+
+        .leaderboard-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .leaderboard-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            transition: var(--transition);
+        }
+
+        .leaderboard-item:hover {
+            background: var(--light-green);
+        }
+
+        .leaderboard-rank {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-green);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 16px;
+            flex-shrink: 0;
+        }
+
+        .leaderboard-rank.gold {
+            background: var(--accent-gold);
+        }
+
+        .leaderboard-info {
+            flex: 1;
+        }
+
+        .leaderboard-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .leaderboard-count {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        /* Calendar Styles */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-nav {
+            background: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .calendar-month {
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--primary-green);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            font-size: 12px;
+            color: var(--text-light);
+            padding: 8px 4px;
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .calendar-day:hover {
+            background: var(--light-green);
+        }
+
+        .calendar-day.other-month {
+            color: var(--text-light);
+            opacity: 0.5;
+        }
+
+        .calendar-day.today {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .calendar-day.has-reading {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .calendar-day.has-reading::after {
+            content: '✓';
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            font-size: 10px;
+        }
+
+        /* Timer Styles */
+        .timer-section {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+            text-align: center;
+        }
+
+        .timer-display {
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .timer-controls {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .timer-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .timer-btn.start {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        .timer-btn.pause {
+            background: var(--accent-gold);
+            color: white;
+        }
+
+        .timer-btn.reset {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .timer-presets {
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .preset-btn {
+            padding: 8px 16px;
+            background: var(--light-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--primary-green);
+        }
+
+        .preset-btn:hover, .preset-btn.active {
+            background: var(--primary-green);
+            color: white;
+        }
+
+        /* Reading Ideas Styles */
+        .reading-ideas {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .ideas-grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .idea-card {
+            background: var(--light-green);
+            border: 2px solid var(--primary-green);
+            border-radius: 10px;
+            padding: 16px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .idea-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .idea-title {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .idea-description {
+            font-size: 14px;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .idea-time {
+            font-size: 12px;
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        /* Past Entries Styles */
+        .past-entries {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            padding: 24px;
+        }
+
+        .entry-item {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .entry-date {
+            font-weight: 600;
+            color: var(--primary-green);
+            margin-right: 16px;
+            min-width: 80px;
+            font-size: 14px;
+        }
+
+        .entry-details {
+            flex: 1;
+        }
+
+        .entry-name {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .entry-reading {
+            font-size: 14px;
+            color: var(--text-light);
+        }
+
+        .entry-verified {
+            color: var(--accent-gold);
+            font-size: 12px;
+            margin-left: 8px;
+        }
+
+        /* Historical Entry Form Styles */
+        .historical-form-section {
+            background: #fff8e1;
+            border: 2px solid var(--accent-gold);
+            border-radius: var(--border-radius);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .historical-form-title {
+            color: var(--primary-green);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .historical-form-info {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            color: var(--text-dark);
+        }
+
+        .alert {
+            padding: 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeaa7;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        .google-search {
+            display: none;
+            margin-top: 12px;
+        }
+
+        .google-search.active {
+            display: block;
+        }
+
+        .pac-container {
+            border-radius: 10px;
+            box-shadow: var(--shadow-lg);
+            border: none;
+            margin-top: 4px;
+        }
+
+        .pac-item {
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+        }
+
+        .pac-item:hover {
+            background: var(--light-green);
+        }
+
+        /* Desktop/Tablet Responsive Design */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 2rem;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .logo {
+                width: 200px;
+            }
+
+            .title {
+                font-size: 32px;
+            }
+
+            .subtitle {
+                font-size: 18px;
+            }
+
+            .nav-tabs {
+                max-width: 800px;
+                margin: 0 auto 2rem auto;
+                display: flex;
+                justify-content: center;
+            }
+
+            .nav-tab {
+                padding: 16px 24px;
+                font-size: 16px;
+                min-width: 140px;
+            }
+
+            /* Two-column layout for larger screens */
+            .desktop-layout {
+                display: grid;
+                grid-template-columns: 2fr 1fr;
+                gap: 2rem;
+                align-items: start;
+            }
+
+            .main-content {
+                grid-column: 1;
+            }
+
+            .sidebar {
+                grid-column: 2;
+                display: flex;
+                flex-direction: column;
+                gap: 1.5rem;
+                position: sticky;
+                top: 2rem;
+            }
+
+            /* Form improvements for desktop */
+            .form-card {
+                padding: 2rem;
+            }
+
+            .form-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .form-grid .form-group:first-child {
+                grid-column: span 2;
+            }
+
+            .form-grid .form-group:nth-child(3) {
+                grid-column: span 2;
+            }
+
+            .form-grid .form-group:nth-child(4),
+            .form-grid .form-group:nth-child(5) {
+                grid-column: span 2;
+            }
+
+            .checkbox-group {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+
+            .checkbox-label {
+                padding: 20px 16px;
+                min-height: 64px;
+            }
+
+            /* Calendar improvements */
+            .calendar-grid {
+                gap: 8px;
+            }
+
+            .calendar-day {
+                min-height: 48px;
+                font-size: 16px;
+            }
+
+            .calendar-day-header {
+                padding: 12px 8px;
+                font-size: 14px;
+            }
+
+            /* Timer improvements */
+            .timer-display {
+                font-size: 4rem;
+                margin: 2rem 0;
+            }
+
+            .timer-controls {
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .timer-btn {
+                padding: 16px 32px;
+                font-size: 16px;
+                min-width: 120px;
+            }
+
+            .timer-presets {
+                gap: 12px;
+                margin-bottom: 2rem;
+            }
+
+            .preset-btn {
+                padding: 12px 24px;
+                font-size: 16px;
+                min-width: 80px;
+            }
+
+            /* Ideas grid improvements */
+            .ideas-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .idea-card {
+                padding: 1.5rem;
+            }
+
+            .idea-title {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .idea-description {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            /* Leaderboard improvements */
+            .leaderboard {
+                padding: 2rem;
+            }
+
+            .leaderboard-title {
+                font-size: 24px;
+                margin-bottom: 2rem;
+            }
+
+            .leaderboard-item {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .leaderboard-rank {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+                margin-right: 20px;
+            }
+
+            .leaderboard-name {
+                font-size: 18px;
+                margin-bottom: 6px;
+            }
+
+            .leaderboard-count {
+                font-size: 15px;
+            }
+
+            /* Past entries improvements */
+            .past-entries {
+                padding: 2rem;
+            }
+
+            .entry-item {
+                padding: 20px;
+                margin-bottom: 16px;
+            }
+
+            .entry-date {
+                min-width: 100px;
+                font-size: 15px;
+                margin-right: 20px;
+            }
+
+            .entry-name {
+                font-size: 16px;
+                margin-bottom: 6px;
+            }
+
+            .entry-reading {
+                font-size: 15px;
+            }
+
+            /* Submit button improvements */
+            .submit-btn {
+                padding: 20px 32px;
+                font-size: 18px;
+                max-width: 300px;
+                margin: 2rem auto 0 auto;
+            }
+
+            .bulk-toggle {
+                padding: 16px 24px;
+                font-size: 16px;
+                max-width: 300px;
+                margin: 0 auto 1rem auto;
+            }
+
+            /* Form input improvements */
+            .form-input, .form-select, .form-textarea {
+                padding: 18px 20px;
+                font-size: 16px;
+            }
+
+            .form-label {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+
+            /* Alert improvements */
+            .alert {
+                padding: 20px;
+                font-size: 16px;
+                max-width: 600px;
+                margin: 0 auto 2rem auto;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                padding: 3rem;
+                max-width: 1400px;
+            }
+
+            /* Three-column layout for very large screens */
+            .desktop-layout {
+                grid-template-columns: 1fr 400px;
+                gap: 3rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .form-grid .form-group:first-child {
+                grid-column: span 2;
+            }
+
+            .form-grid .form-group:nth-child(2) {
+                grid-column: span 1;
+            }
+
+            .checkbox-group {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1.5rem;
+            }
+
+            .ideas-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 2rem;
+            }
+
+            .timer-display {
+                font-size: 5rem;
+            }
+
+            .nav-tab {
+                padding: 18px 32px;
+                font-size: 17px;
+                min-width: 160px;
+            }
+
+            .sidebar {
+                gap: 2rem;
+            }
+
+            .form-card, .leaderboard, .past-entries, .timer-section, .reading-ideas {
+                padding: 2.5rem;
+            }
+        }
+
+        @media (min-width: 1440px) {
+            .container {
+                max-width: 1600px;
+                padding: 4rem;
+            }
+
+            .desktop-layout {
+                grid-template-columns: 1fr 450px;
+                gap: 4rem;
+            }
+
+            .ideas-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .checkbox-group {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        /* Mobile styles (keep existing) */
+        @media (max-width: 767px) {
+            .container {
+                padding: 16px 12px;
+            }
+            
+            .form-card {
+                padding: 20px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+
+            .timer-display {
+                font-size: 36px;
+            }
+
+            .timer-controls {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .nav-tab {
+                font-size: 12px;
+                padding: 10px 6px;
+            }
+
+            .ideas-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .desktop-layout {
+                display: block;
+            }
+
+            .sidebar {
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-height: 600px) {
+            .header {
+                margin-bottom: 20px;
+                padding: 16px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="https://cdn.abacus.ai/images/7746b415-08b4-4deb-b24f-4b5e61923715.png" alt="MyMaktab Logo" class="logo">
+            <h1 class="title">Read Every Day Quran Challenge</h1>
+            <p class="subtitle">Red Award Submission</p>
+        </div>
+
+        <div class="nav-tabs">
+            <button class="nav-tab active" data-tab="submit">📝 Submit</button>
+            <button class="nav-tab" data-tab="history">📅 History</button>
+            <button class="nav-tab" data-tab="timer">⏱️ Timer</button>
+            <button class="nav-tab" data-tab="ideas">💡 Ideas</button>
+            <button class="nav-tab" data-tab="leaderboard">🏆 Leaders</button>
+        </div>
+
+        <div id="alertContainer"></div>
+
+        <!-- Submit Tab -->
+        <div id="submit" class="tab-content active">
+            <form id="submissionForm" class="form-card">
+                <div class="form-group">
+                    <label for="masjidSelect" class="form-label">Select Your Masjid/Maktab</label>
+                    <select id="masjidSelect" class="form-select" required>
+                        <option value="">Choose your masjid...</option>
+                        <optgroup label="🇬🇧 United Kingdom">
+                            <option value="East London Mosque, London">East London Mosque, London</option>
+                            <option value="Birmingham Central Mosque, Birmingham">Birmingham Central Mosque, Birmingham</option>
+                            <option value="Manchester Islamic Centre, Manchester">Manchester Islamic Centre, Manchester</option>
+                            <option value="Leeds Grand Mosque, Leeds">Leeds Grand Mosque, Leeds</option>
+                            <option value="Glasgow Central Mosque, Glasgow">Glasgow Central Mosque, Glasgow</option>
+                        </optgroup>
+                        <optgroup label="🇺🇸 United States">
+                            <option value="Islamic Center of America, Dearborn">Islamic Center of America, Dearborn</option>
+                            <option value="Islamic Society of North America, Plainfield">Islamic Society of North America, Plainfield</option>
+                            <option value="Dar Al-Hijrah Islamic Center, Falls Church">Dar Al-Hijrah Islamic Center, Falls Church</option>
+                            <option value="Islamic Center of Greater Cincinnati, West Chester">Islamic Center of Greater Cincinnati, West Chester</option>
+                        </optgroup>
+                        <optgroup label="🇨🇦 Canada">
+                            <option value="Islamic Society of Toronto, Toronto">Islamic Society of Toronto, Toronto</option>
+                            <option value="Al Rashid Mosque, Edmonton">Al Rashid Mosque, Edmonton</option>
+                            <option value="Islamic Centre of Vancouver, Vancouver">Islamic Centre of Vancouver, Vancouver</option>
+                        </optgroup>
+                        <optgroup label="🇦🇺 Australia">
+                            <option value="Lakemba Mosque, Sydney">Lakemba Mosque, Sydney</option>
+                            <option value="Preston Mosque, Melbourne">Preston Mosque, Melbourne</option>
+                            <option value="Islamic Society of South Australia, Adelaide">Islamic Society of South Australia, Adelaide</option>
+                        </optgroup>
+                        <option value="other">🔍 Search for other masjid...</option>
+                    </select>
+                    
+                    <div id="googleSearch" class="google-search">
+                        <input type="text" id="googlePlaces" class="form-input" placeholder="Search for any masjid worldwide...">
+                    </div>
+                    
+                    <input type="hidden" id="selectedMasjid" name="selectedMasjid">
+                </div>
+
+                <div class="form-group">
+                    <label for="childName" class="form-label">Child's Name</label>
+                    <input type="text" id="childName" class="form-input" placeholder="Enter child's full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">What did you read? (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="dua" name="readingType" value="dua" class="checkbox-input">
+                            <label for="dua" class="checkbox-label">
+                                <div class="checkbox-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                Dua
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hadith" name="readingType" value="hadith" class="checkbox-input">
+                            <label for="hadith" class="checkbox-label">
+                                <div class="checkbox-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                Hadith
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="quran" name="readingType" value="quran" class="checkbox-input">
+                            <label for="quran" class="checkbox-label">
+                                <div class="checkbox-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                Quran
+                            </label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="hifdh" name="readingType" value="hifdh" class="checkbox-input">
+                            <label for="hifdh" class="checkbox-label">
+                                <div class="checkbox-icon">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                Hifdh
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="readingDetails" class="form-label">Details of what was read (Optional)</label>
+                    <input type="text" id="readingDetails" class="form-input" placeholder="e.g., Surah Yaseen, Hadith on patience, Ayat ul-Kursi...">
+                </div>
+
+                <div class="form-group">
+                    <div class="verification-checkbox">
+                        <label class="verification-label">
+                            <input type="checkbox" id="imamVerification" class="verification-input">
+                            <span>✅ I recited this to an Imam/Teacher at the Masjid</span>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="button" id="bulkToggle" class="bulk-toggle">
+                    <i class="fas fa-users"></i> Bulk Submit for Group
+                </button>
+
+                <div id="bulkSection" class="bulk-section">
+                    <div class="bulk-info">
+                        <strong>For Teachers/Imams:</strong> Enter multiple student names (one per line) to submit readings for your entire class or group.
+                    </div>
+                    <div class="form-group">
+                        <label for="bulkNames" class="form-label">Student Names (one per line)</label>
+                        <textarea id="bulkNames" class="form-textarea" placeholder="Ahmed Ali&#10;Fatima Khan&#10;Omar Hassan&#10;Aisha Ahmed" rows="6"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" id="submitBtn" class="submit-btn">
+                    <div class="loading-spinner"></div>
+                    <span class="btn-text">Submit Reading</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- History Tab -->
+        <div id="history" class="tab-content">
+            <div class="form-card">
+                <div class="form-group">
+                    <label for="historyChildName" class="form-label">View History For</label>
+                    <input type="text" id="historyChildName" class="form-input" placeholder="Enter child's name to view history">
+                </div>
+                
+                <button type="button" id="addHistoricalBtn" class="bulk-toggle" style="margin-top: 16px;">
+                    <i class="fas fa-plus"></i> Add Historical Entry
+                </button>
+            </div>
+
+            <!-- Historical Entry Form -->
+            <div id="historicalEntryForm" class="historical-form-section" style="display: none;">
+                <h3 class="historical-form-title">
+                    <i class="fas fa-history"></i> Add Historical Entry
+                </h3>
+                
+                <div class="historical-form-info">
+                    <strong>📧 Parent Email Required:</strong> We require a parent/guardian email for accountability purposes. No emails will be sent unless verification is needed at the end of the challenge.
+                </div>
+                
+                <form id="historicalForm">
+                    <div class="form-group">
+                        <label for="historicalChildName" class="form-label">Child's Name *</label>
+                        <input type="text" id="historicalChildName" class="form-input" placeholder="Enter child's full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="historicalParentEmail" class="form-label">Parent/Guardian Email *</label>
+                        <input type="email" id="historicalParentEmail" class="form-input" placeholder="parent@example.com" required>
+                        <small class="form-help">Required for accountability - no emails will be sent unless verification is needed at challenge end</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="historicalDate" class="form-label">Reading Date *</label>
+                        <input type="date" id="historicalDate" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">What was read? (Select all that apply) *</label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="historicalDua" name="historicalReadingType" value="dua" class="checkbox-input">
+                                <label for="historicalDua" class="checkbox-label">
+                                    <div class="checkbox-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    Dua
+                                </label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="historicalHadith" name="historicalReadingType" value="hadith" class="checkbox-input">
+                                <label for="historicalHadith" class="checkbox-label">
+                                    <div class="checkbox-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    Hadith
+                                </label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="historicalQuran" name="historicalReadingType" value="quran" class="checkbox-input">
+                                <label for="historicalQuran" class="checkbox-label">
+                                    <div class="checkbox-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    Quran
+                                </label>
+                            </div>
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="historicalHifdh" name="historicalReadingType" value="hifdh" class="checkbox-input">
+                                <label for="historicalHifdh" class="checkbox-label">
+                                    <div class="checkbox-icon">
+                                        <i class="fas fa-check"></i>
+                                    </div>
+                                    Hifdh
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="historicalDescription" class="form-label">Details of what was read (Optional)</label>
+                        <input type="text" id="historicalDescription" class="form-input" placeholder="e.g., Surah Yaseen, Hadith on patience, Ayat ul-Kursi...">
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="verification-checkbox">
+                            <label class="verification-label">
+                                <input type="checkbox" id="historicalVerification" class="verification-input">
+                                <span>✅ This was verified by an Imam/Teacher</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-plus"></i> Add Historical Entry
+                    </button>
+                </form>
+            </div>
+
+            <div class="form-card">
+                <div class="calendar-header">
+                    <button class="calendar-nav" id="prevMonth">‹</button>
+                    <div class="calendar-month" id="currentMonth"></div>
+                    <button class="calendar-nav" id="nextMonth">›</button>
+                </div>
+                <div class="calendar-grid" id="calendarGrid"></div>
+            </div>
+
+            <div class="past-entries" id="pastEntries">
+                <h3 style="margin-bottom: 16px; color: var(--primary-green);">📚 Recent Entries</h3>
+                <div id="entriesList"></div>
+            </div>
+        </div>
+
+        <!-- Timer Tab -->
+        <div id="timer" class="tab-content">
+            <div class="timer-section">
+                <h3 style="margin-bottom: 16px; color: var(--primary-green);">⏱️ Reading Timer</h3>
+                <div class="timer-presets">
+                    <button class="preset-btn" data-minutes="5">5 min</button>
+                    <button class="preset-btn" data-minutes="10">10 min</button>
+                    <button class="preset-btn active" data-minutes="15">15 min</button>
+                    <button class="preset-btn" data-minutes="20">20 min</button>
+                    <button class="preset-btn" data-minutes="30">30 min</button>
+                </div>
+                <div class="timer-display" id="timerDisplay">15:00</div>
+                <div class="timer-controls">
+                    <button class="timer-btn start" id="startTimer">Start</button>
+                    <button class="timer-btn pause" id="pauseTimer">Pause</button>
+                    <button class="timer-btn reset" id="resetTimer">Reset</button>
+                </div>
+                <p style="margin-top: 16px; color: var(--text-light); font-size: 14px;">
+                    Set a timer to help maintain focus during your reading sessions.
+                </p>
+            </div>
+        </div>
+
+        <!-- Ideas Tab -->
+        <div id="ideas" class="tab-content">
+            <div class="reading-ideas">
+                <h3 style="margin-bottom: 20px; color: var(--primary-green); text-align: center;">💡 Daily Reading Ideas</h3>
+                <div class="ideas-grid" id="ideasGrid">
+                    <div class="idea-card" data-idea="quran">
+                        <div class="idea-title">
+                            <i class="fas fa-book-open"></i>
+                            Quran Reading
+                        </div>
+                        <div class="idea-description">Start with short surahs like Al-Fatiha, Al-Ikhlas, or Al-Falaq</div>
+                        <div class="idea-time">5-10 minutes</div>
+                    </div>
+                    <div class="idea-card" data-idea="dua">
+                        <div class="idea-title">
+                            <i class="fas fa-hands"></i>
+                            Daily Duas
+                        </div>
+                        <div class="idea-description">Morning/evening duas, before meals, or travel duas</div>
+                        <div class="idea-time">3-5 minutes</div>
+                    </div>
+                    <div class="idea-card" data-idea="hadith">
+                        <div class="idea-title">
+                            <i class="fas fa-quote-right"></i>
+                            Hadith Study
+                        </div>
+                        <div class="idea-description">Read and reflect on sayings of Prophet Muhammad (PBUH)</div>
+                        <div class="idea-time">5-15 minutes</div>
+                    </div>
+                    <div class="idea-card" data-idea="hifdh">
+                        <div class="idea-title">
+                            <i class="fas fa-brain"></i>
+                            Memorization
+                        </div>
+                        <div class="idea-description">Practice memorizing verses or review previously learned ones</div>
+                        <div class="idea-time">10-20 minutes</div>
+                    </div>
+                    <div class="idea-card" data-idea="tafsir">
+                        <div class="idea-title">
+                            <i class="fas fa-search"></i>
+                            Tafsir Reading
+                        </div>
+                        <div class="idea-description">Read explanations and interpretations of Quranic verses</div>
+                        <div class="idea-time">10-15 minutes</div>
+                    </div>
+                    <div class="idea-card" data-idea="names">
+                        <div class="idea-title">
+                            <i class="fas fa-star"></i>
+                            99 Names of Allah
+                        </div>
+                        <div class="idea-description">Learn and recite the beautiful names of Allah</div>
+                        <div class="idea-time">5-10 minutes</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leaderboard Tab -->
+        <div id="leaderboard" class="tab-content">
+            <div class="leaderboard">
+                <h2 class="leaderboard-title">🏆 Top Masjids Leaderboard</h2>
+                <div id="leaderboardList">
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank gold">1</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">East London Mosque</div>
+                            <div class="leaderboard-count">247 readings submitted</div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank">2</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Birmingham Central Mosque</div>
+                            <div class="leaderboard-count">198 readings submitted</div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank">3</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Manchester Islamic Centre</div>
+                            <div class="leaderboard-count">156 readings submitted</div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank">4</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Leeds Grand Mosque</div>
+                            <div class="leaderboard-count">134 readings submitted</div>
+                        </div>
+                    </div>
+                    <div class="leaderboard-item">
+                        <div class="leaderboard-rank">5</div>
+                        <div class="leaderboard-info">
+                            <div class="leaderboard-name">Glasgow Central Mosque</div>
+                            <div class="leaderboard-count">112 readings submitted</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIFTk3J-gyWpC_r5hZ49LpORCii3fPvTQ&libraries=places"></script>
+    <script>
+        // Global variables
+        let autocomplete;
+        let isBulkMode = false;
+        let currentDate = new Date();
+        let timerInterval;
+        let timerSeconds = 900; // 15 minutes default
+        let isTimerRunning = false;
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeGooglePlaces();
+            setupEventListeners();
+            loadLeaderboard();
+            loadOfflineSubmissions();
+            initializeCalendar();
+            loadPastEntries();
+            setupTimer();
+            setupIdeasInteraction();
+        });
+
+        // Tab switching functionality
+        function setupEventListeners() {
+            // Tab navigation
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const targetTab = this.dataset.tab;
+                    switchTab(targetTab);
+                });
+            });
+
+            // Existing event listeners
+            setupFormEventListeners();
+            setupCalendarEventListeners();
+            setupHistoryEventListeners();
+        }
+
+        function switchTab(tabName) {
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.querySelector(`[data-tab="${tabName}"]`).classList.add('active');
+
+            // Update active content
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Initialize Google Places Autocomplete
+        function initializeGooglePlaces() {
+            const input = document.getElementById('googlePlaces');
+            if (window.google && window.google.maps) {
+                autocomplete = new google.maps.places.Autocomplete(input, {
+                    types: ['establishment'],
+                    fields: ['name', 'formatted_address', 'place_id']
+                });
+
+                autocomplete.addListener('place_changed', function() {
+                    const place = autocomplete.getPlace();
+                    if (place.name) {
+                        const fullName = `${place.name}, ${place.formatted_address}`;
+                        document.getElementById('selectedMasjid').value = fullName;
+                        showAlert(`Selected: ${place.name}`, 'success');
+                    }
+                });
+            }
+        }
+
+        // Setup form event listeners
+        function setupFormEventListeners() {
+            // Masjid selection handler
+            document.getElementById('masjidSelect').addEventListener('change', function() {
+                const googleSearch = document.getElementById('googleSearch');
+                const selectedMasjid = document.getElementById('selectedMasjid');
+                
+                if (this.value === 'other') {
+                    googleSearch.classList.add('active');
+                    selectedMasjid.value = '';
+                } else {
+                    googleSearch.classList.remove('active');
+                    selectedMasjid.value = this.value;
+                }
+            });
+
+            // Bulk toggle handler
+            document.getElementById('bulkToggle').addEventListener('click', function() {
+                const bulkSection = document.getElementById('bulkSection');
+                const submitBtn = document.getElementById('submitBtn');
+                const btnText = submitBtn.querySelector('.btn-text');
+                
+                isBulkMode = !isBulkMode;
+                
+                if (isBulkMode) {
+                    bulkSection.classList.add('active');
+                    this.innerHTML = '<i class="fas fa-user"></i> Switch to Individual Submit';
+                    btnText.textContent = 'Submit Group Readings';
+                } else {
+                    bulkSection.classList.remove('active');
+                    this.innerHTML = '<i class="fas fa-users"></i> Bulk Submit for Group';
+                    btnText.textContent = 'Submit Reading';
+                }
+            });
+
+            // Form submission handler
+            document.getElementById('submissionForm').addEventListener('submit', handleFormSubmission);
+        }
+
+        // Calendar functionality
+        function initializeCalendar() {
+            updateCalendarDisplay();
+        }
+
+        function setupCalendarEventListeners() {
+            document.getElementById('prevMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                updateCalendarDisplay();
+            });
+
+            document.getElementById('nextMonth').addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                updateCalendarDisplay();
+            });
+        }
+
+        function updateCalendarDisplay() {
+            const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'];
+            
+            document.getElementById('currentMonth').textContent = 
+                `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
+
+            const calendarGrid = document.getElementById('calendarGrid');
+            calendarGrid.innerHTML = '';
+
+            // Add day headers
+            const dayHeaders = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+            dayHeaders.forEach(day => {
+                const dayHeader = document.createElement('div');
+                dayHeader.className = 'calendar-day-header';
+                dayHeader.textContent = day;
+                calendarGrid.appendChild(dayHeader);
+            });
+
+            // Get first day of month and number of days
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1);
+            const lastDay = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0);
+            const today = new Date();
+
+            // Add empty cells for days before month starts
+            for (let i = 0; i < firstDay.getDay(); i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day other-month';
+                calendarGrid.appendChild(emptyDay);
+            }
+
+            // Add days of the month
+            for (let day = 1; day <= lastDay.getDate(); day++) {
+                const dayElement = document.createElement('div');
+                dayElement.className = 'calendar-day';
+                dayElement.textContent = day;
+
+                const dayDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                
+                // Check if it's today
+                if (dayDate.toDateString() === today.toDateString()) {
+                    dayElement.classList.add('today');
+                }
+
+                // Check if there's a reading entry for this day
+                if (hasReadingForDate(dayDate)) {
+                    dayElement.classList.add('has-reading');
+                }
+
+                calendarGrid.appendChild(dayElement);
+            }
+        }
+
+        function hasReadingForDate(date) {
+            const entries = JSON.parse(localStorage.getItem('readingEntries') || '[]');
+            const dateString = date.toDateString();
+            return entries.some(entry => new Date(entry.timestamp).toDateString() === dateString);
+        }
+
+        // History functionality
+        function setupHistoryEventListeners() {
+            document.getElementById('historyChildName').addEventListener('input', function() {
+                loadPastEntries(this.value);
+            });
+
+            // Historical entry toggle
+            document.getElementById('addHistoricalBtn').addEventListener('click', function() {
+                const form = document.getElementById('historicalEntryForm');
+                const isVisible = form.style.display !== 'none';
+                
+                if (isVisible) {
+                    form.style.display = 'none';
+                    this.innerHTML = '<i class="fas fa-plus"></i> Add Historical Entry';
+                } else {
+                    form.style.display = 'block';
+                    this.innerHTML = '<i class="fas fa-minus"></i> Cancel Historical Entry';
+                    // Set max date to today
+                    document.getElementById('historicalDate').max = new Date().toISOString().split('T')[0];
+                }
+            });
+
+            // Historical form submission
+            document.getElementById('historicalForm').addEventListener('submit', handleHistoricalSubmission);
+        }
+
+        // Handle historical form submission
+        async function handleHistoricalSubmission(e) {
+            e.preventDefault();
+            
+            const childName = document.getElementById('historicalChildName').value;
+            const parentEmail = document.getElementById('historicalParentEmail').value;
+            const readingDate = document.getElementById('historicalDate').value;
+            const readingTypes = Array.from(document.querySelectorAll('input[name="historicalReadingType"]:checked'))
+                .map(cb => cb.value);
+            const readingDetails = document.getElementById('historicalDescription').value;
+            const imamVerification = document.getElementById('historicalVerification').checked;
+            
+            // Validation
+            if (!childName || !parentEmail || !readingDate || !readingTypes.length) {
+                showAlert('Please fill in all required fields', 'warning');
+                return;
+            }
+
+            // Email validation
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(parentEmail)) {
+                showAlert('Please enter a valid email address', 'warning');
+                return;
+            }
+
+            const historicalData = {
+                childName,
+                parentEmail,
+                readingTypes,
+                readingDetails,
+                imamVerification,
+                timestamp: new Date(readingDate).toISOString(),
+                isHistorical: true,
+                masjid: 'Historical Entry' // Default for historical entries
+            };
+
+            try {
+                // Store entry locally for history
+                storeReadingEntry(historicalData);
+                
+                // Attempt to submit to API
+                const success = await submitToAPI(historicalData);
+                
+                if (success) {
+                    showAlert('Historical entry added successfully! 🎉', 'success');
+                } else {
+                    // Store offline
+                    storeOfflineSubmission(historicalData);
+                    showAlert('Historical entry saved offline and will sync later when connection is restored.', 'warning');
+                }
+                
+                // Reset form and hide
+                document.getElementById('historicalForm').reset();
+                document.getElementById('historicalEntryForm').style.display = 'none';
+                document.getElementById('addHistoricalBtn').innerHTML = '<i class="fas fa-plus"></i> Add Historical Entry';
+                
+                // Refresh displays
+                loadPastEntries();
+                updateCalendarDisplay();
+                
+            } catch (error) {
+                console.error('Historical submission error:', error);
+                showAlert('Error adding historical entry. Please try again.', 'warning');
+            }
+        }
+
+        function loadPastEntries(childName = '') {
+            const entries = JSON.parse(localStorage.getItem('readingEntries') || '[]');
+            const entriesList = document.getElementById('entriesList');
+            
+            let filteredEntries = entries;
+            if (childName) {
+                filteredEntries = entries.filter(entry => 
+                    entry.childName && entry.childName
